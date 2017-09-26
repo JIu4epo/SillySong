@@ -80,8 +80,8 @@
 				A91038531F79CFB900F06AD8 /* AppDelegate.swift */,
 				A91038551F79CFB900F06AD8 /* ViewController.swift */,
 				A91038571F79CFB900F06AD8 /* Main.storyboard */,
-				A910385A1F79CFB900F06AD8 /* Assets.xcassets */,
 				A910385C1F79CFB900F06AD8 /* LaunchScreen.storyboard */,
+				A910385A1F79CFB900F06AD8 /* Assets.xcassets */,
 				A910385F1F79CFB900F06AD8 /* Info.plist */,
 			);
 			path = "Silly Song";
