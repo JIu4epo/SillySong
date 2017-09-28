@@ -17,12 +17,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         nameField.delegate = self
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     @IBAction func reset(_ sender: Any) {
@@ -47,8 +41,10 @@ extension ViewController: UITextFieldDelegate{
 
 func lyricsForName(lyricsTemplate: String, fullName: String) -> String {
     
-    let shortName = shortNameForName(name: fullName)
-    
+    var shortName = shortNameForName(name: fullName)
+    if shortName.isEmpty {
+        shortName = fullName
+    }
     let lyrics = lyricsTemplate
         .replacingOccurrences(of: "<FULL_NAME>", with: fullName)
         .replacingOccurrences(of: "<SHORT_NAME>", with: shortName)
@@ -63,14 +59,18 @@ let bananaFanaTemplate = [
     "<FULL_NAME>"].joined(separator: "\n")
 
 func shortNameForName(name: String) -> String {
-    let lowercaseName = name.lowercased()
-    let vowelSet = CharacterSet(charactersIn: "aeiou")
-    let firstLetter: String = String(lowercaseName[lowercaseName.startIndex] as Character)
-    
-    if firstLetter.rangeOfCharacter(from: vowelSet) != nil {
-        return lowercaseName
+    if !name.isEmpty{
+        let lowercaseName = name.lowercased()
+        let vowelSet = CharacterSet(charactersIn: "aeiou")
+        let firstLetter: String = String(lowercaseName[lowercaseName.startIndex] as Character)
+        
+        if firstLetter.rangeOfCharacter(from: vowelSet) != nil  {
+            return lowercaseName
+        } else {
+            return shortNameForName(name: String(lowercaseName.dropFirst()))
+        }
     } else {
-        return shortNameForName(name: String(lowercaseName.dropFirst()))
+        return ""
     }
 }
 
