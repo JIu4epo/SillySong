@@ -43,7 +43,7 @@ func lyricsForName(lyricsTemplate: String, fullName: String) -> String {
     
     var shortName = shortNameForName(name: fullName)
     if shortName.isEmpty {
-        shortName = fullName
+        shortName = fullName.lowercased()
     }
     let lyrics = lyricsTemplate
         .replacingOccurrences(of: "<FULL_NAME>", with: fullName)
